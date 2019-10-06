@@ -1,7 +1,8 @@
 // author Dion Buckley
 #ifndef GAME
 #define GAME
-
+#define SDL_MAIN_HANDLED
+#include <SDL.h>
 #include "Animation.h"
 #include "Windows.h"
 
@@ -41,7 +42,7 @@ private:
 	//void setupSprite(int t_pressed);
 
 
-	// SDL_Window* m_window;
+	SDL_Window* m_window;
 
 	//bool m_exitGame; // control exiting game
 
