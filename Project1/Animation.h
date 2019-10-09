@@ -11,11 +11,10 @@ public:
 	Animation();
 	void setCurrent(State * s) { current = s; }
 	void idle();
-	void swording();
-	void shovelling();
+	void climbing();
+	void falling();
 	void jumping();
 	void walking();
-	void hammering();
 };
 
 #endif //!ANIMATION

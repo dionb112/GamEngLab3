@@ -10,7 +10,7 @@ Jumping::~Jumping()
 
 void Jumping::idle(Animation * a)
 {
-	std::cout << "To Idle from Jump" << std::endl;
+	std::cout << "To idle from Jump" << std::endl;
 	a->setCurrent(new Idle());
 	delete this;
 }

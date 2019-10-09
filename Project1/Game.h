@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include "Debug.h"
+#include "Animation.h"
 #include <SDL.h>
 
 class Game
@@ -17,6 +18,9 @@ public:
 	bool IsRunning();
 	void CleanUp();
 private:
+	Animation fsm;
+	int m_pressed;
+
 	bool m_running;
 	SDL_Window* m_p_Window;
 	SDL_Renderer* m_p_Renderer;
@@ -26,4 +30,3 @@ private:
 	SDL_Surface* m_p_Surface;
 };
 #endif
-

@@ -1,18 +1,14 @@
 #include "Game.h"
 #include <iostream>
 #include <thread>
-
-
 using namespace std;
-
 Game::Game() : m_running(false)
 {
+	m_pressed = -1;
 }
-
 Game::~Game()
 {
 }
-
 bool Game::Initialize(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
 	if(SDL_Init(SDL_INIT_EVERYTHING) == 0)
@@ -50,9 +46,6 @@ bool Game::Initialize(const char* title, int xpos, int ypos, int width, int heig
 
 	return true;
 }
-
-
-
 void Game::LoadContent()
 {
 	DEBUG_MSG("Loading Content");
@@ -73,7 +66,6 @@ void Game::LoadContent()
 		m_running = false;
 	}
 }
-
 void Game::Render()
 {
 	SDL_RenderClear(m_p_Renderer);
@@ -84,45 +76,67 @@ void Game::Render()
 		SDL_RenderCopy(m_p_Renderer, m_p_Texture, NULL, NULL);
 	SDL_RenderPresent(m_p_Renderer);
 }
-
 void Game::Update()
 {
-	//DEBUG_MSG("Updating....");
+	switch (m_pressed)
+	{
+	case 0:
+		fsm.walking();
+		break;
+	case 1:
+		fsm.climbing();
+		break;
+	case 2:
+		fsm.jumping();
+		break;
+	case 3:
+		fsm.falling();
+		break;
+	case 4:
+		fsm.idle();
+		break;
+	default:
+		break;
+	}
 }
-
 void Game::HandleEvents()
 {
 	SDL_Event event;
-
 	while (SDL_PollEvent(&event))
 	{
-		switch(event.type)
-			case SDL_KEYDOWN:
-				switch(event.key.keysym.sym)
-				{
-				case SDLK_ESCAPE:
-					m_running = false;
-					break;
-				case SDLK_UP:
-					DEBUG_MSG("Up Key Pressed");
-					SDL_SetRenderDrawColor(m_p_Renderer, 255, 0, 0, 255);
-					break;
-				case SDLK_DOWN:
-					DEBUG_MSG("Down Key Pressed");
-					SDL_SetRenderDrawColor(m_p_Renderer, 0, 255, 0, 255);
-					break;
-				case SDLK_LEFT:
-					DEBUG_MSG("Left Key Pressed");
-					SDL_SetRenderDrawColor(m_p_Renderer, 0, 0, 255, 255);
-					break;
-				case SDLK_RIGHT:
-					DEBUG_MSG("Right Key Pressed");
-					SDL_SetRenderDrawColor(m_p_Renderer, 255, 255, 255, 255);
-					break;
-				default:
-					SDL_SetRenderDrawColor(m_p_Renderer, 0, 0, 0, 255);
-					break;
-				}
+		switch (event.type)
+		{
+		case SDL_KEYDOWN:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_ESCAPE:
+				m_running = false;
+				break;
+			case SDLK_UP:
+				SDL_SetRenderDrawColor(m_p_Renderer, 255, 0, 0, 255);
+				m_pressed = 2; // jump
+				break;
+			case SDLK_DOWN:
+				SDL_SetRenderDrawColor(m_p_Renderer, 0, 255, 0, 255);
+				m_pressed = 3; // falling
+				break;
+			case SDLK_LEFT:
+				SDL_SetRenderDrawColor(m_p_Renderer, 0, 0, 255, 255);
+				m_pressed = 0; // walking
+				break;
+			case SDLK_RIGHT:
+				SDL_SetRenderDrawColor(m_p_Renderer, 255, 255, 255, 255);
+				m_pressed = 1; // climbing
+				break;
+			case SDLK_SPACE:
+				SDL_SetRenderDrawColor(m_p_Renderer, 255, 255, 255, 255);
+				m_pressed = 4; // idle
+				break;
+			default:
+				SDL_SetRenderDrawColor(m_p_Renderer, 0, 0, 0, 255);
+				break;
+			}
+		}
 	}
 }
 

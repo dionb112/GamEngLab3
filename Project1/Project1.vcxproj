@@ -80,7 +80,7 @@
       <AdditionalIncludeDirectories>$(SDL_SDK)/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SDL_SDK)/lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -107,7 +107,7 @@
       <AdditionalIncludeDirectories>$(SDL_SDK)/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SDL_SDK)/lib</AdditionalLibraryDirectories>
@@ -133,23 +133,21 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Hammering.h" />
+    <ClInclude Include="Falling.h" />
     <ClInclude Include="Idle.h" />
     <ClInclude Include="Jumping.h" />
-    <ClInclude Include="Shovelling.h" />
+    <ClInclude Include="Climbing.h" />
     <ClInclude Include="State.h" />
-    <ClInclude Include="Swording.h" />
     <ClInclude Include="Walking.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Hammering.cpp" />
+    <ClCompile Include="Falling.cpp" />
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="Jumping.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Shovelling.cpp" />
-    <ClCompile Include="Swording.cpp" />
+    <ClCompile Include="Climbing.cpp" />
     <ClCompile Include="Walking.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

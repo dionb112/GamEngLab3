@@ -24,25 +24,22 @@
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hammering.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Idle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Jumping.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Shovelling.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Swording.h">
+    <ClInclude Include="Walking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Walking.h">
+    <ClInclude Include="Falling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Climbing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,22 +53,19 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Hammering.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Idle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Jumping.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shovelling.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Swording.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Walking.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Falling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Climbing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

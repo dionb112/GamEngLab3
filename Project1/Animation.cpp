@@ -11,14 +11,14 @@ void Animation::idle()
 	current->idle(this);
 }
 
-void Animation::swording()
+void Animation::climbing()
 {
-	current->swording(this);
+	current->climbing(this);
 }
 
-void Animation::shovelling()
+void Animation::falling()
 {
-	current->shovelling(this);
+	current->falling(this);
 }
 
 void Animation::jumping()
@@ -29,10 +29,5 @@ void Animation::jumping()
 void Animation::walking()
 {
 	current->walking(this);
-}
-
-void Animation::hammering()
-{
-	current->hammering(this);
 }
 
