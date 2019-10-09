@@ -2,9 +2,12 @@
 #include <iostream>
 #include <thread>
 using namespace std;
-Game::Game() : m_running(false)
+Game::Game() : 
+	m_running(false),
+	m_spriteY{ 0 },
+	m_spriteX{ 32 },
+	m_pressed{ 4 }
 {
-	m_pressed = -1;
 }
 Game::~Game()
 {
@@ -23,7 +26,7 @@ bool Game::Initialize(const char* title, int xpos, int ypos, int width, int heig
 			if(m_p_Renderer != 0)
 			{
 				DEBUG_MSG("Renderer creation success");
-				SDL_SetRenderDrawColor(m_p_Renderer, 255, 255, 255, 255);
+				SDL_SetRenderDrawColor(m_p_Renderer, 0, 255, 255, 255);
 			}
 			else
 			{
@@ -79,26 +82,35 @@ void Game::Render()
 void Game::Update()
 {
 	m_ticks = SDL_GetTicks();
-	m_sprite = (m_ticks / 100) % 4;
+	m_sprite = (m_ticks / 100) % 3;
 
-	m_srcrect = { m_sprite * 32, 32, 32, 32 };
-	m_dstrect = { 32, 32, 32, 32 };
+	m_srcrect = { m_sprite * m_spriteX, m_spriteY, SPRITE_SIZE, SPRITE_SIZE };
+	m_dstrect = { SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE, SPRITE_SIZE };
 	switch (m_pressed)
 	{
 	case 0:
 		fsm.walking();
+		m_spriteY = SPRITE_SIZE * 2;
+		m_spriteX = SPRITE_SIZE;
 		break;
 	case 1:
 		fsm.climbing();
+		m_spriteY = SPRITE_SIZE * 2;
+		m_spriteX = SPRITE_SIZE;
 		break;
 	case 2:
 		fsm.jumping();
+		m_spriteY = SPRITE_SIZE * 3;
+		m_spriteX = SPRITE_SIZE;
 		break;
 	case 3:
 		fsm.falling();
+		m_spriteY = 0;
+		m_spriteX = SPRITE_SIZE;
 		break;
 	case 4:
 		fsm.idle();
+		m_spriteX = 0;
 		break;
 	default:
 		break;
@@ -134,7 +146,7 @@ void Game::HandleEvents()
 				m_pressed = 1; // climbing
 				break;
 			case SDLK_SPACE:
-				SDL_SetRenderDrawColor(m_p_Renderer, 255, 255, 255, 255);
+				SDL_SetRenderDrawColor(m_p_Renderer, 0, 255, 255, 255);
 				m_pressed = 4; // idle
 				break;
 			default:

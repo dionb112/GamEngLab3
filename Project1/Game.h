@@ -3,7 +3,7 @@
 #include "Debug.h"
 #include "Animation.h"
 #include <SDL.h>
-
+static const int SPRITE_SIZE = 32;
 class Game
 {
 public:
@@ -18,6 +18,8 @@ public:
 	bool IsRunning();
 	void CleanUp();
 private:
+	int m_spriteX;
+	int m_spriteY;
 	Animation fsm;
 	int m_pressed;
 	Uint32 m_ticks;
