@@ -20,7 +20,10 @@ public:
 private:
 	Animation fsm;
 	int m_pressed;
-
+	Uint32 m_ticks;
+	int m_sprite;
+	SDL_Rect m_srcrect;
+	SDL_Rect m_dstrect;
 	bool m_running;
 	SDL_Window* m_p_Window;
 	SDL_Renderer* m_p_Renderer;

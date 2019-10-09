@@ -73,11 +73,16 @@ void Game::Render()
 	DEBUG_MSG("Width Destination" + m_Destination.w);
 
 	if(m_p_Renderer != nullptr && m_p_Texture != nullptr)
-		SDL_RenderCopy(m_p_Renderer, m_p_Texture, NULL, NULL);
+		SDL_RenderCopy(m_p_Renderer, m_p_Texture, &m_srcrect, &m_dstrect);
 	SDL_RenderPresent(m_p_Renderer);
 }
 void Game::Update()
 {
+	m_ticks = SDL_GetTicks();
+	m_sprite = (m_ticks / 100) % 4;
+
+	m_srcrect = { m_sprite * 32, 32, 32, 32 };
+	m_dstrect = { 32, 32, 32, 32 };
 	switch (m_pressed)
 	{
 	case 0:
@@ -148,8 +153,8 @@ bool Game::IsRunning()
 void Game::UnloadContent()
 {
 	DEBUG_MSG("Unloading Content");
-	//delete(m_p_Texture);
-	//m_p_Texture = NULL;
+	// delete(m_p_Texture);
+	// m_p_Texture = NULL;
 }
 
 void Game::CleanUp()
