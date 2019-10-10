@@ -90,7 +90,7 @@ void Game::Update()
 	{
 	case 0:
 		fsm.walking();
-		m_spriteY = SPRITE_SIZE * 2;
+		m_spriteY = SPRITE_SIZE;
 		m_spriteX = SPRITE_SIZE;
 		break;
 	case 1:
